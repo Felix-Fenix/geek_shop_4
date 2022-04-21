@@ -12,3 +12,4 @@ urlpatterns = [
     re_path(r"^product/(?P<pk>\d+)/$", mainapp.product, name="product"),
     re_path(r"^category/(?P<pk>\d+)/page/(?P<page>\d+)/$", mainapp.products, name="page"),
 ]
+# commit

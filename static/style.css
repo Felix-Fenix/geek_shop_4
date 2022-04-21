@@ -59,7 +59,7 @@ body {
     border-radius: 5px;
     height: 30px;
     margin: 0px auto;
-    width: 135px;
+    width: 180px;
     padding: 0 15px;
 }
 
@@ -109,7 +109,7 @@ body {
     border-radius: 5px;
     height: 30px;
     margin: 5px auto;
-    width: 175px;
+    /* width: 175px; */
     padding: 0 15px;
 }
 
@@ -119,7 +119,7 @@ body {
 }
 
 .product_record {
-    height: 125px;
+    height: 170px;
     margin: 20px auto;
     position: relative;
 }
@@ -158,7 +158,7 @@ body {
     float: left;
     margin-top: 15px;
     margin-left: 25px;
-    width: 100px;
+    /* width: 100px; */
 }
 
 .product_record img {
@@ -240,7 +240,8 @@ body {
     float: left;
     margin-top: 0px;
     margin-left: 25px;
-    width: 185px;
+    width: 285px;
+
 }
 
 .category_record .category_desc {
@@ -314,7 +315,7 @@ body {
     float: left;
     margin-top: 15px;
     margin-left: 25px;
-    width: 175px;
+    width: 205px;
 }
 
 .user_record .user_name a {

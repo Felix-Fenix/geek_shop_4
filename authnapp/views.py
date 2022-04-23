@@ -83,13 +83,7 @@ def send_verify_mail(user):
     \n{settings.DOMAIN_NAME}{verify_link}"
 
     print(f"from: {settings.EMAIL_HOST_USER}, to: {user.email}")
-    return send_mail(
-        title,
-        message,
-        settings.EMAIL_HOST_USER,
-        [user.email],
-        fail_silently=False,
-    )
+    return send_mail(title, message, settings.EMAIL_HOST_USER, [user.email], fail_silently=False)
 
 
 def verify(request, email, activation_key):
@@ -113,7 +107,7 @@ def verify(request, email, activation_key):
 
 def verify_send_message(request):
     try:
-            return render(request, "authnapp/verify_send_ok.html")
+        return render(request, "authnapp/verify_send_ok.html")
 
     except Exception as e:
         print(f"error activation user : {e.args}")
@@ -123,7 +117,7 @@ def verify_send_message(request):
 
 def verify_send_message_fail(request):
     try:
-            return render(request, "authnapp/verify_send_fail.html")
+        return render(request, "authnapp/verify_send_fail.html")
 
     except Exception as e:
         print(f"error activation user : {e.args}")

@@ -9,24 +9,30 @@ from django.utils.timezone import utc
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('authnapp', '0005_default_age'),
-    ]
+    dependencies = [("authnapp", "0005_default_age")]
 
     operations = [
         migrations.AlterField(
-            model_name='shopuser',
-            name='activation_key_expires',
-            field=models.DateTimeField(default=datetime.datetime(2022, 4, 25, 8, 46, 58, 459650, tzinfo=utc), verbose_name='актуальность ключа'),
+            model_name="shopuser",
+            name="activation_key_expires",
+            field=models.DateTimeField(
+                default=datetime.datetime(2022, 4, 25, 8, 46, 58, 459650, tzinfo=utc), verbose_name="актуальность ключа"
+            ),
         ),
         migrations.CreateModel(
-            name='ShopUserProfile',
+            name="ShopUserProfile",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('tagline', models.CharField(blank=True, max_length=128, verbose_name='теги')),
-                ('aboutMe', models.TextField(blank=True, max_length=512, verbose_name='о себе')),
-                ('gender', models.CharField(blank=True, choices=[('M', 'М'), ('W', 'Ж')], max_length=1, verbose_name='пол')),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("tagline", models.CharField(blank=True, max_length=128, verbose_name="теги")),
+                ("aboutMe", models.TextField(blank=True, max_length=512, verbose_name="о себе")),
+                (
+                    "gender",
+                    models.CharField(blank=True, choices=[("M", "М"), ("W", "Ж")], max_length=1, verbose_name="пол"),
+                ),
+                (
+                    "user",
+                    models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
+                ),
             ],
         ),
     ]

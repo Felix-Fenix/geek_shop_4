@@ -8,9 +8,7 @@ from django.utils.timezone import utc
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ("authnapp", "0002_user_model_extend"),
-    ]
+    dependencies = [("authnapp", "0002_user_model_extend")]
 
     operations = [
         migrations.AlterField(
@@ -19,5 +17,5 @@ class Migration(migrations.Migration):
             field=models.DateTimeField(
                 default=datetime.datetime(2022, 4, 13, 5, 34, 57, 210941, tzinfo=utc), verbose_name="актуальность ключа"
             ),
-        ),
+        )
     ]

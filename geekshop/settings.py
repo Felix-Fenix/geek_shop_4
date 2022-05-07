@@ -169,8 +169,7 @@ EMAIL_USE_SSL = True
 # If server support TLS:
 # EMAIL_USE_TLS = True
 
-# EMAIL_HOST_USER = "merkava2016@bk.ru"
-# EMAIL_HOST_PASSWORD = "9SkY6Vrt36SFMgPsdBvU"
+
 # For debugging: python -m smtpd -n -c DebuggingServer localhost:25
 EMAIL_HOST_USER = None
 EMAIL_HOST_PASSWORD = None

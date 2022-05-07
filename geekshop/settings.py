@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+from re import T
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -154,28 +155,28 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 #   https://docs.djangoproject.com/en/3.2/ref/settings/#login-url
 LOGIN_URL = "authnapp:login"
 
-DOMAIN_NAME = "http://localhost:8000"
-
+# DOMAIN_NAME = "http://185.195.24.217"
+DOMAIN_NAME = "https://test-nginx.vpnforall.su"
 # Read about sending email:
 #   https://docs.djangoproject.com/en/2.2/topics/email/
 
 # Full list of email settings:
 #   https://docs.djangoproject.com/en/2.2/ref/settings/#email
-EMAIL_HOST = "localhost"
-EMAIL_PORT = "25"
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_PORT = "465"
 
-EMAIL_USE_SSL = False
+EMAIL_USE_SSL = True
 # If server support TLS:
 # EMAIL_USE_TLS = True
 
-# EMAIL_HOST_USER = "django@geekshop.local"
-# EMAIL_HOST_PASSWORD = "geekshop"
+# EMAIL_HOST_USER = "merkava2016@bk.ru"
+# EMAIL_HOST_PASSWORD = "9SkY6Vrt36SFMgPsdBvU"
 # For debugging: python -m smtpd -n -c DebuggingServer localhost:25
 EMAIL_HOST_USER = None
 EMAIL_HOST_PASSWORD = None
 
 # Email as files
-EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_FILE_PATH = "tmp/email-messages/"
 
 AUTHENTICATION_BACKENDS = (

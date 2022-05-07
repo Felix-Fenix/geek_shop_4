@@ -1,3 +1,4 @@
+# from tkinter import E
 from django.conf import settings
 from django.contrib import auth
 from django.core.mail import send_mail
@@ -45,7 +46,7 @@ def register(request):
             user = register_form.save()
             if send_verify_mail(user):
                 print("сообщение для подтверждения регистрации отправлено")
-                return HttpResponseRedirect(reverse("auth:login"))
+                return HttpResponseRedirect(reverse("auth:verify_send_message"))
             print("ошибка отправки сообщения для подтверждения регистрации")
             return HttpResponseRedirect(reverse("auth:login"))
     else:
@@ -64,32 +65,37 @@ def edit(request):
         profile_form = ShopUserProfileEditForm(request.POST, instance=request.user.shopuserprofile)
         if edit_form.is_valid() and profile_form.is_valid():
             edit_form.save()
+            print('______rrrrr______')
             return HttpResponseRedirect(reverse("auth:edit"))
+            
     else:
         edit_form = ShopUserEditForm(instance=request.user)
         profile_form = ShopUserProfileEditForm(instance=request.user.shopuserprofile)
 
     content = {"title": title, "edit_form": edit_form, "profile_form": profile_form, "media_url": settings.MEDIA_URL}
-
+    print('______rrrrr______')
     return render(request, "authnapp/edit.html", content)
 
 
 def send_verify_mail(user):
-    verify_link = reverse("auth:verify", args=[user.email, user.activation_key])
+    try:
+        verify_link = reverse("auth:verify", args=[user.email, user.activation_key])
 
-    title = f"Подтверждение учетной записи {user.username}"
-    message = f"Для подтверждения учетной записи {user.username} \
-    на портале {settings.DOMAIN_NAME} перейдите по ссылке: \
-    \n{settings.DOMAIN_NAME}{verify_link}"
+        title = f"Подтверждение учетной записи {user.username}"
+        message = f"Для подтверждения учетной записи {user.username} \
+        на портале {settings.DOMAIN_NAME} перейдите по ссылке: \
+        \n{settings.DOMAIN_NAME}{verify_link}"
 
-    print(f"from: {settings.EMAIL_HOST_USER}, to: {user.email}")
-    return send_mail(
-        title,
-        message,
-        settings.EMAIL_HOST_USER,
-        [user.email],
-        fail_silently=False,
-    )
+        print(f"from: {settings.EMAIL_HOST_USER}, to: {user.email}")
+        return send_mail(
+            title,
+            message,
+            settings.EMAIL_HOST_USER,
+            [user.email],
+            fail_silently=False,
+        )
+    except Exception as err:
+        print(err, '000000000')    
 
 
 def verify(request, email, activation_key):

@@ -1,5 +1,8 @@
 import os
 from pathlib import Path
+from re import T
+import json
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -154,28 +157,34 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 #   https://docs.djangoproject.com/en/3.2/ref/settings/#login-url
 LOGIN_URL = "authnapp:login"
 
-DOMAIN_NAME = "http://localhost:8000"
-
+# DOMAIN_NAME = "http://185.195.24.217"
+DOMAIN_NAME = "https://test-nginx.vpnforall.su"
 # Read about sending email:
 #   https://docs.djangoproject.com/en/2.2/topics/email/
 
 # Full list of email settings:
 #   https://docs.djangoproject.com/en/2.2/ref/settings/#email
-EMAIL_HOST = "localhost"
-EMAIL_PORT = "25"
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_PORT = "465"
 
-EMAIL_USE_SSL = False
+EMAIL_USE_SSL = True
 # If server support TLS:
 # EMAIL_USE_TLS = True
 
-# EMAIL_HOST_USER = "django@geekshop.local"
-# EMAIL_HOST_PASSWORD = "geekshop"
+
+with open(
+    os.path.join(BASE_DIR, "tmp", "secrets", "email.json"), "r"
+) as secrets:
+    email_auth = json.load(secrets)
+EMAIL_HOST_USER = email_auth['EMAIL_HOST_USER']
+EMAIL_HOST_PASSWORD = email_auth['EMAIL_HOST_PASSWORD']
+
 # For debugging: python -m smtpd -n -c DebuggingServer localhost:25
-EMAIL_HOST_USER = None
-EMAIL_HOST_PASSWORD = None
+# EMAIL_HOST_USER = None
+# EMAIL_HOST_PASSWORD = None
 
 # Email as files
-EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_FILE_PATH = "tmp/email-messages/"
 
 AUTHENTICATION_BACKENDS = (
@@ -183,7 +192,6 @@ AUTHENTICATION_BACKENDS = (
     "social_core.backends.github.GithubOAuth2",
 )
 
-import json
 
 with open(
     os.path.join(BASE_DIR, "tmp", "secrets", "github.json"), "r"
@@ -192,3 +200,45 @@ with open(
 
 SOCIAL_AUTH_GITHUB_KEY = github_auth["client_id"]
 SOCIAL_AUTH_GITHUB_SECRET = github_auth["client_secret"]
+
+
+if DEBUG:
+    MIDDLEWARE.extend([
+        "debug_toolbar.middleware.DebugToolbarMiddleware",
+    ])
+
+# Debgu tool bar settings
+if DEBUG:
+
+    def show_toolbar(request):
+        return True
+
+    DEBUG_TOOLBAR_CONFIG = {
+        "SHOW_TOOLBAR_CALLBACK": show_toolbar,
+    }
+
+    DEBUG_TOOLBAR_PANELS = [
+        # "ddt_request_history.panels.request_history.RequestHistoryPanel",
+        "debug_toolbar.panels.versions.VersionsPanel",
+        "debug_toolbar.panels.timer.TimerPanel",
+        "debug_toolbar.panels.settings.SettingsPanel",
+        "debug_toolbar.panels.headers.HeadersPanel",
+        "debug_toolbar.panels.request.RequestPanel",
+        "debug_toolbar.panels.sql.SQLPanel",
+        "debug_toolbar.panels.templates.TemplatesPanel",
+        "debug_toolbar.panels.staticfiles.StaticFilesPanel",
+        "debug_toolbar.panels.cache.CachePanel",
+        "debug_toolbar.panels.signals.SignalsPanel",
+        "debug_toolbar.panels.logging.LoggingPanel",
+        "debug_toolbar.panels.redirects.RedirectsPanel",
+        "debug_toolbar.panels.profiling.ProfilingPanel",
+        "template_profiler_panel.panels.template.TemplateProfilerPanel",
+    ]
+# <--- Django Debug Toolbar
+
+if DEBUG:
+    INSTALLED_APPS.extend([
+        "debug_toolbar",
+        "template_profiler_panel",
+        "django_extensions",
+    ])

@@ -167,7 +167,7 @@ EMAIL_PORT = "465"
 
 EMAIL_USE_SSL = True
 # If server support TLS:
-# EMAIL_USE_TLS = True
+EMAIL_USE_TLS = True
 
 
 # For debugging: python -m smtpd -n -c DebuggingServer localhost:25

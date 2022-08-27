@@ -5,15 +5,15 @@ server {
     location = /favicon.ico { access_log off; log_not_found off; }
 
     location /static/ {
-        root /home/fenix/geekshop_4;
+        root /home/fenix/geek_shop_4;
     }
 
     location /media/ {
-        root /home/fenix/geekshop_4;
+        root /home/fenix/geek_shop_4;
     }
 
     location / {
         include proxy_params;
-        proxy_pass http://unix:/home/fenix/geekshop_4/geekshop.sock;
+        proxy_pass http://unix:/home/fenix/geek_shop_4/geekshop.sock;
     }
 }

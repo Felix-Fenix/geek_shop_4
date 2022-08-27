@@ -2,27 +2,26 @@
 
 
 sudo apt update && sudo apt upgrade -y
-sudo apt-get install python3-dev -y
 
-sudo apt --fix-broken install -y
+#sudo apt --fix-broken install -y
 #useradd -g www-data -m django
 sudo groupadd www-data2
 sudo apt install git
-git clone https://github.com/Felix-Fenix/geek_shop_4.git -b lesson_14 /home/fenix/
+git clone https://github.com/Felix-Fenix/geek_shop_4.git -b lesson_14
 
-sudo chown -R fenix:www-data2 /home/fenix/geekshop_4
-sudo apt install pip3
+sudo chown -R fenix:www-data2 /home/fenix/geek_shop_4
+sudo apt install pip -y
 pip install -U pip
-pip install -r /home/fenix/geekshop_4/requirements.txt
+cd geek_shop_4 && pip install -r requirements.txt
 # shellcheck disable=SC2225
-cp /home/fenix/geekshop_4/gunicorn.service /etc/systemd/system
+cp /home/fenix/geek_shop_4/gunicorn.service /etc/systemd/system
 sudo systemctl daemon-reload
 sudo systemctl enable gunicorn
 sudo systemctl start gunicorn
 sudo systemctl status gunicorn
 
 sudo apt install -y nginx
-cp /home/fenix/geekshop_4/geekshop_nginx /etc/nginx/sites-available/
+cp /home/fenix/geek_shop_4/geekshop_nginx /etc/nginx/sites-available/
 sudo ln -s /etc/nginx/sites-available/geekshop_nginx /etc/nginx/sites-enabled/geekshop_nginx
 # Перезапускаем nginx
 sudo systemctl restart nginx

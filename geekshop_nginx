@@ -1,0 +1,19 @@
+server {
+    listen 80;
+    server_name 10.8.0.46;
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+
+    location /static/ {
+        root /home/fenix/geekshop_4;
+    }
+
+    location /media/ {
+        root /home/fenix/geekshop_4;
+    }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/home/fenix/geekshop_4/geekshop.sock;
+    }
+}

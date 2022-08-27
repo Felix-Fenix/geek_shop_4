@@ -1,0 +1,12 @@
+[Unit]
+Description=gunicorn daemon
+After=network.target
+
+[Service]
+User=fenix
+Group=www-data2
+WorkingDirectory=/home/fenix/geekshop_4
+ExecStart=python3 gunicorn --access-logfile - --workers 3 --env DJANGO_PRODUCTION=1 --bind unix:/home/fenix/geekshop_4/geekshop.sock geekshop.wsgi
+
+[Install]
+WantedBy=multi-user.target

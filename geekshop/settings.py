@@ -144,7 +144,8 @@ USE_TZ = True
 STATIC_URL = "/static/"
 
 # In common case STATIC_ROOT can not be in STATICFILES_DIRS
-if DEBUG:
+# if DEBUG:
+if not DEBUG:
     STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 else:
     STATIC_ROOT = os.path.join(BASE_DIR, "static")
@@ -161,6 +162,7 @@ LOGIN_URL = "authnapp:login"
 # DOMAIN_NAME = "http://185.195.24.217"
 # DOMAIN_NAME = "https://test-nginx.vpnforall.su"
 DOMAIN_NAME = os.getenv("DOMAIN", default="https://test-nginx.vpnforall.su")
+print(DOMAIN_NAME)
 
 # Read about sending email:
 #   https://docs.djangoproject.com/en/2.2/topics/email/

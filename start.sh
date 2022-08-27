@@ -1,11 +1,6 @@
 #!/usr/bin/env bash
 
-export EMAIL_HOST_USER="merkava2016@bk.ru"
-export EMAIL_HOST_PASSWORD="9SkY6Vrt36SFMgPsdBvU"
-export DJANGO_PRODUCTION=1
-export DOMAIN="http://10.8.0.46"
-export CLIENT_ID="5c0bf55af4365cc1606c"
-export CLIENT_SECRET="c2df30fee0eeb6251b5c1e50ca4064a932895fa9"
+export EMAIL_HOST_USER="merkava2016@bk.ru" && export EMAIL_HOST_PASSWORD="9SkY6Vrt36SFMgPsdBvU" && export DJANGO_PRODUCTION=1 && export DOMAIN="http://10.8.0.46" && export CLIENT_ID="5c0bf55af4365cc1606c" && export CLIENT_SECRET="c2df30fee0eeb6251b5c1e50ca4064a932895fa9"
 
 sudo apt update && sudo apt upgrade -y
 

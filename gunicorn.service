@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 User=fenix
-Group=www-data2
+Group=www-data
 WorkingDirectory=/home/fenix/geek_shop_4
 ExecStart=/home/fenix/venv/bin/gunicorn --access-logfile - --workers 3 --env DJANGO_PRODUCTION=1 --bind unix:/home/fenix/geek_shop_4/geekshop.sock geekshop.wsgi
 

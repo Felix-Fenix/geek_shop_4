@@ -12,7 +12,7 @@ git clone https://github.com/Felix-Fenix/geek_shop_4.git -b lesson_14
 sudo chown -R fenix:www-data2 /home/fenix/geek_shop_4
 sudo apt install pip -y
 pip install -U pip
-cd geek_shop_4 && pip install -r requirements.txt
+pip install -r /home/fenix/geek_shop_4/requirements.txt
 # shellcheck disable=SC2225
 cp /home/fenix/geek_shop_4/gunicorn.service /etc/systemd/system
 sudo systemctl daemon-reload

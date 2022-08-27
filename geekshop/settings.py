@@ -175,13 +175,14 @@ EMAIL_USE_SSL = True
 # EMAIL_USE_TLS = True
 
 
-with open(
-    os.path.join(BASE_DIR, "tmp", "secrets", "email.json"), "r"
-) as secrets:
-    email_auth = json.load(secrets)
-EMAIL_HOST_USER = email_auth['EMAIL_HOST_USER']
-EMAIL_HOST_PASSWORD = email_auth['EMAIL_HOST_PASSWORD']
-
+# with open(
+#     os.path.join(BASE_DIR, "tmp", "secrets", "email.json"), "r"
+# ) as secrets:
+#     email_auth = json.load(secrets)
+# EMAIL_HOST_USER = email_auth['EMAIL_HOST_USER']
+# EMAIL_HOST_PASSWORD = email_auth['EMAIL_HOST_PASSWORD']
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 # For debugging: python -m smtpd -n -c DebuggingServer localhost:25
 # EMAIL_HOST_USER = None
 # EMAIL_HOST_PASSWORD = None
@@ -196,14 +197,16 @@ AUTHENTICATION_BACKENDS = (
 )
 
 
-with open(
-    os.path.join(BASE_DIR, "tmp", "secrets", "github.json"), "r"
-) as secrets:
-    github_auth = json.load(secrets)
+# with open(
+#     os.path.join(BASE_DIR, "tmp", "secrets", "github.json"), "r"
+# ) as secrets:
+#     github_auth = json.load(secrets)
 
-SOCIAL_AUTH_GITHUB_KEY = github_auth["client_id"]
-SOCIAL_AUTH_GITHUB_SECRET = github_auth["client_secret"]
-
+#
+# SOCIAL_AUTH_GITHUB_KEY = github_auth["client_id"]
+# SOCIAL_AUTH_GITHUB_SECRET = github_auth["client_secret"]
+SOCIAL_AUTH_GITHUB_KEY = os.getenv("CLIENT_ID")
+SOCIAL_AUTH_GITHUB_SECRET = os.getenv("CLIENT_SECRET")
 
 if DEBUG:
     MIDDLEWARE.extend([

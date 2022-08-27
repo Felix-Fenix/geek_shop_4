@@ -81,7 +81,8 @@ WSGI_APPLICATION = "geekshop.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-if DEBUG:
+# if DEBUG
+if not DEBUG:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
@@ -158,7 +159,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 LOGIN_URL = "authnapp:login"
 
 # DOMAIN_NAME = "http://185.195.24.217"
-DOMAIN_NAME = "https://test-nginx.vpnforall.su"
+# DOMAIN_NAME = "https://test-nginx.vpnforall.su"
+DOMAIN_NAME = os.getenv("DOMAIN", default="https://test-nginx.vpnforall.su")
+
 # Read about sending email:
 #   https://docs.djangoproject.com/en/2.2/topics/email/
 

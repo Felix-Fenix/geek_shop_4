@@ -6,7 +6,7 @@ After=network.target
 User=fenix
 Group=www-data
 WorkingDirectory=/home/fenix/geek_shop_4
-ExecStart=/home/fenix/venv/bin/gunicorn --access-logfile - --workers 3 --env EMAIL_HOST_USER=merkava2016@bk.ru,DJANGO_PRODUCTION=1,EMAIL_HOST_PASSWORD=9SkY6Vrt36SFMgPsdBvU,DOMAIN=http://10.8.0.46,CLIENT_ID=5c0bf55af4365cc1606c,CLIENT_SECRET=c2df30fee0eeb6251b5c1e50ca4064a932895fa9 --bind unix:/home/fenix/geek_shop_4/geekshop.sock geekshop.wsgi
+ExecStart=/home/fenix/venv/bin/gunicorn --access-logfile - --workers 3 --env EMAIL_HOST_USER='merkava2016@bk.ru' --env DJANGO_PRODUCTION=1 --env EMAIL_HOST_PASSWORD='9SkY6Vrt36SFMgPsdBvU' --env DOMAIN='http://10.8.0.46' --env CLIENT_ID='5c0bf55af4365cc1606c' --env CLIENT_SECRET='c2df30fee0eeb6251b5c1e50ca4064a932895fa9' --bind unix:/home/fenix/geek_shop_4/geekshop.sock geekshop.wsgi
 
 [Install]
 WantedBy=multi-user.target

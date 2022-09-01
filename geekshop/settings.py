@@ -89,16 +89,16 @@ if not DEBUG:
             "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
         }
     }
-else:
-    DATABASES = {
-        "default": {
-            "NAME": "geekshop",
-            "ENGINE": "django.db.backends.postgresql",
-            "USER": "django",
-            "PASSWORD": "geekbrains",
-            "HOST": "localhost",
-        }
-    }
+# else:
+#     DATABASES = {
+#         "default": {
+#             "NAME": "geekshop",
+#             "ENGINE": "django.db.backends.postgresql",
+#             "USER": "django",
+#             "PASSWORD": "geekbrains",
+#             "HOST": "localhost",
+#         }
+#     }
 
 
 # Password validation
